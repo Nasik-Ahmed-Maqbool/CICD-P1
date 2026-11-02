@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nasik Ahmed — Web Developer portfolio">
+  <title>Nasik Portfolio | Web Developer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    :root{--bg:#080d18;--panel:#101a2b;--panel2:#132238;--text:#eef4ff;--muted:#9aabc3;--accent:#6ee7d2;--accent2:#8b9cff;--line:rgba(255,255,255,.1);--shadow:0 24px 70px rgba(0,0,0,.35)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 85% 10%,rgba(110,231,210,.11),transparent 28%),radial-gradient(circle at 5% 45%,rgba(139,156,255,.12),transparent 30%)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,calc(100% - 44px));margin:auto}
+    .navbar{position:fixed;top:0;left:0;width:100%;z-index:20;background:rgba(8,13,24,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font:700 1.3rem 'Space Grotesk';letter-spacing:-.7px}.brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:30px}.nav-links a{font-size:.92rem;color:var(--muted);transition:.25s}.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+    .nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 19px;border-radius:999px;background:var(--accent);color:#07131b;font-weight:700;font-size:.9rem;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s}
+    .nav-cta:hover,.button:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(110,231,210,.2)}
+    .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 11px;font-size:1.2rem;cursor:pointer}
+    section{padding:110px 0}
+    .hero{min-height:100vh;display:flex;align-items:center;padding-top:140px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:65px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+    .eyebrow:before{content:"";width:26px;height:1px;background:var(--accent)}
+    h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.12}
+    h1{font-size:clamp(2.8rem,6vw,5.3rem);letter-spacing:-3px;margin-bottom:20px}
+    h1 span{background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:600px;color:var(--muted);font-size:1.08rem;margin-bottom:30px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}.button.secondary{background:transparent;border-color:var(--line);color:var(--text)}.button.secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .quick-info{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}.quick-info strong{display:block;font:700 1.35rem 'Space Grotesk'}.quick-info small{color:var(--muted)}
+    .portrait-wrap{position:relative;max-width:390px;margin:auto}
+    .portrait-glow{position:absolute;inset:8% -8%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(65px);opacity:.22;border-radius:50%}
+    .portrait{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.17);background:linear-gradient(145deg,#1b3048,#111a2a);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
+    .portrait img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .portrait-placeholder{position:relative;text-align:center;padding:25px;color:#cbd8eb}.portrait-placeholder .initials{width:145px;height:145px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font:700 3.4rem 'Space Grotesk';color:#07131b;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 15px 45px #0006}
+    .portrait-placeholder p{font-size:.85rem;color:var(--muted)}
+    .float-card{position:absolute;bottom:28px;left:-35px;padding:14px 18px;background:#111d30;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);animation:float 4s ease-in-out infinite}
+    .float-card strong{display:block;color:var(--accent);font-size:.9rem}.float-card span{font-size:.78rem;color:var(--muted)}
+    .section-head{max-width:650px;margin-bottom:48px}.section-head h2{font-size:clamp(2.1rem,4vw,3.2rem);letter-spacing:-1.6px;margin:10px 0 15px}.section-head p{color:var(--muted)}
+    .section-kicker{color:var(--accent);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.7px}
+    .skills-section{background:linear-gradient(180deg,transparent,rgba(16,26,43,.55),transparent)}
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .skill-card,.project-card,.experience-card{background:linear-gradient(145deg,rgba(19,34,56,.9),rgba(13,23,39,.9));border:1px solid var(--line);border-radius:20px;padding:25px;transition:transform .3s,border-color .3s,background .3s}
+    .skill-card:hover,.project-card:hover,.experience-card:hover{transform:translateY(-7px);border-color:rgba(110,231,210,.45);background:var(--panel2)}
+    .skill-icon{width:46px;height:46px;border-radius:13px;background:rgba(110,231,210,.1);display:grid;place-items:center;color:var(--accent);font-size:1.35rem;margin-bottom:18px}
+    .skill-card h3{font-size:1.15rem;margin-bottom:9px}.skill-card p{font-size:.9rem;color:var(--muted)}
+    .skill-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.tag{font-size:.75rem;color:#c6d4e8;background:rgba(255,255,255,.06);border:1px solid var(--line);padding:5px 9px;border-radius:7px}
+    .work-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+    .experience-card h3{font-size:1.35rem;margin:8px 0}.experience-card p,.project-card p{color:var(--muted);font-size:.92rem}
+    .timeline{margin-top:24px;border-left:1px solid rgba(110,231,210,.4);padding-left:22px;display:grid;gap:24px}
+    .timeline-item{position:relative}.timeline-item:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent);left:-27px;top:7px;box-shadow:0 0 0 5px rgba(110,231,210,.1)}
+    .timeline-item small{color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase}.timeline-item h4{font-size:1rem;margin:5px 0}.timeline-item p{font-size:.86rem;color:var(--muted)}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.project-symbol{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(139,156,255,.13);color:var(--accent2);font-size:1.3rem}.project-number{color:#65758e;font:600 .85rem 'Space Grotesk'}
+    .project-card h3{font-size:1.2rem;margin-bottom:10px}.project-card .skill-tags{margin-top:18px}
+    .contact{padding:70px 0 95px}.contact-box{border:1px solid rgba(110,231,210,.22);border-radius:26px;padding:48px;background:linear-gradient(120deg,rgba(110,231,210,.1),rgba(139,156,255,.1));display:flex;align-items:center;justify-content:space-between;gap:25px}.contact-box h2{font-size:clamp(1.8rem,4vw,2.8rem);margin:8px 0}.contact-box p{color:var(--muted);max-width:540px}
+    footer{border-top:1px solid var(--line);padding:28px 0}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.footer-inner p{font-size:.82rem;color:var(--muted)}.socials{display:flex;gap:10px}.socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);font-size:.78rem;font-weight:700;transition:.25s}.socials a:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr .8fr;gap:30px}.skills-grid{grid-template-columns:repeat(2,1fr)}.work-grid{grid-template-columns:1fr}.float-card{left:-15px}}
+    @media(max-width:650px){.container{width:min(100% - 32px,520px)}.nav-inner{height:68px}.menu-btn{display:block}.nav-cta{display:none}.nav-links{display:none;position:absolute;top:68px;left:0;width:100%;padding:18px 24px 24px;background:#0c1423;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px}.nav-links.open{display:flex}.hero{padding-top:115px;text-align:center}.hero-grid{grid-template-columns:1fr;gap:50px}.hero-copy{margin-left:auto;margin-right:auto}.hero-actions,.quick-info{justify-content:center}.portrait-wrap{width:min(78%,330px)}h1{letter-spacing:-2px}.section-head{text-align:center;margin-left:auto;margin-right:auto}.skills-grid,.projects{grid-template-columns:1fr}.contact-box{padding:30px 24px;align-items:flex-start;flex-direction:column}.float-card{left:-22px;bottom:18px}.quick-info{gap:20px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Nasik<span>.</span>Portfolio</a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Let's talk <span>↗</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Hello, I'm Nasik Ahmed</div>
+          <h1>Building digital<br>experiences that <span>matter.</span></h1>
+          <p class="hero-copy">I'm a Computer Science graduate with a passion for web development and technology. I enjoy turning ideas into clean, responsive websites and practical digital solutions using modern tools.</p>
+          <div class="hero-actions">
+            <a class="button" href="#projects">Explore my work <span>↗</span></a>
+            <a class="button secondary" href="#contact">Contact me</a>
+          </div>
+          <div class="quick-info">
+            <div><strong>Web</strong><small>Development</small></div>
+            <div><strong>UI</strong><small>Responsive design</small></div>
+            <div><strong>Tech</strong><small>Continuous learning</small></div>
+          </div>
+        </div>
+        <div class="portrait-wrap reveal">
+          <div class="portrait-glow"></div>
+          <div class="portrait">
+            <!-- Replace this placeholder with your photo:
+                 <img src="my-photo.jpg" alt="Nasik Ahmed">
+                 Keep my-photo.jpg in the same folder as index.html. -->
+            <div class="portrait-placeholder">
+              <div class="initials">NA</div>
+              <strong>Your photo goes here</strong>
+              <p>Replace this area with your own picture</p>
+            </div>
+          </div>
+          <div class="float-card"><strong>Always learning ✦</strong><span>Creating • Improving • Building</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">What I work with</div>
+          <h2>Skills &amp; expertise</h2>
+          <p>A growing toolkit for creating websites, solving problems, and bringing digital ideas to life.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><div class="skill-icon">⌘</div><h3>Frontend Development</h3><p>Building responsive interfaces with a focus on usability, layout, and clean code.</p><div class="skill-tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Tailwind CSS</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">▧</div><h3>WordPress &amp; WooCommerce</h3><p>Creating and customizing business websites and online stores.</p><div class="skill-tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">Kadence</span><span class="tag">Plugins</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">⌘</div><h3>Programming</h3><p>Developing logical thinking and practical programming skills through projects.</p><div class="skill-tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">Problem solving</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">⚙</div><h3>Linux &amp; DevOps</h3><p>Building foundational skills in command-line tools, systems, and deployment workflows.</p><div class="skill-tags"><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Docker basics</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">◈</div><h3>Payment Integration</h3><p>Working on e-commerce payment flows and connecting frontend experiences with backend services.</p><div class="skill-tags"><span class="tag">PayFast</span><span class="tag">WooCommerce</span><span class="tag">REST APIs</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">✧</div><h3>Tools &amp; Workflow</h3><p>Using modern tools to plan, build, test, and improve digital projects.</p><div class="skill-tags"><span class="tag">VS Code</span><span class="tag">Chrome DevTools</span><span class="tag">Responsive UI</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">My journey</div><h2>Experience &amp; learning</h2><p>My journey combines a Computer Science foundation with hands-on website projects and continuous technical learning.</p></div>
+        <div class="work-grid">
+          <article class="experience-card reveal">
+            <div class="section-kicker">Background</div><h3>Computer Science Graduate</h3>
+            <p>Focused on strengthening practical development skills through independent learning and building real-world style projects.</p>
+            <div class="skill-tags"><span class="tag">Web development</span><span class="tag">Programming</span><span class="tag">Technology</span></div>
+          </article>
+          <article class="experience-card reveal">
+            <div class="section-kicker">Development path</div><h3>Hands-on practice</h3>
+            <div class="timeline">
+              <div class="timeline-item"><small>Web development</small><h4>React &amp; responsive websites</h4><p>Practicing component-based interfaces, layouts, styling, and responsive design.</p></div>
+              <div class="timeline-item"><small>CMS &amp; e-commerce</small><h4>WordPress and WooCommerce</h4><p>Building business website experiences and exploring payment gateway integration.</p></div>
+              <div class="timeline-item"><small>Systems &amp; deployment</small><h4>Linux, Git, and Docker</h4><p>Developing practical skills in command-line workflows, version control, and deployment fundamentals.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="skills-section">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">Selected work</div><h2>Projects I've worked on</h2><p>A selection of practical projects and development work. Replace or expand these cards with your live project links and screenshots.</p></div>
+        <div class="projects">
+          <article class="project-card reveal"><div class="project-top"><div class="project-symbol">♡</div><span class="project-number">01 / WEB APP</span></div><h3>Donation &amp; Student Fee Portal</h3><p>A React-based project concept with donation and student fee forms, designed to support a clear and simple user experience.</p><div class="skill-tags"><span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">Forms</span><span class="tag">PayFast exploration</span></div></article>
+          <article class="project-card reveal"><div class="project-top"><div class="project-symbol">▣</div><span class="project-number">02 / E-COMMERCE</span></div><h3>Business Website &amp; Online Store</h3><p>A WordPress and WooCommerce website project focused on business presentation, product flows, and payment gateway setup.</p><div class="skill-tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">Kadence</span></div></article>
+          <article class="project-card reveal"><div class="project-top"><div class="project-symbol">⌨</div><span class="project-number">03 / PYTHON</span></div><h3>Python GUI Calculator</h3><p>A desktop calculator concept using Tkinter with arithmetic operations and a simple graphical interface.</p><div class="skill-tags"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">GUI</span></div></article>
+          <article class="project-card reveal"><div class="project-top"><div class="project-symbol">↗</div><span class="project-number">04 / DEPLOYMENT</span></div><h3>Docker &amp; GitHub Practice</h3><p>Learning containerization and version-control workflows as part of a practical DevOps learning path.</p><div class="skill-tags"><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Linux</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><div class="section-kicker">Have a project in mind?</div><h2>Let's build something great.</h2><p>I'm open to opportunities, collaborations, and conversations about web development and technology.</p></div>
+          <a class="button" href="mailto:your.email@example.com">Email me <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Nasik Ahmed. Designed &amp; built with care.</p>
+      <div class="socials" aria-label="Social links">
+        <!-- Replace # with your real profile URLs -->
+        <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const sections = document.querySelectorAll('main section[id]');
+    const navItems = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = 'home';
+      sections.forEach(section => { if (window.scrollY >= section.offsetTop - 150) current = section.id; });
+      navItems.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+    }, { passive: true });
+  </script>
+</body>
+</html>
